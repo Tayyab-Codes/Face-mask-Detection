@@ -112,10 +112,13 @@ def visualize_predictions(image_pil, predictions, id_to_label_map, threshold):
             ax.imshow(colored_mask, alpha=alpha_blend * binary_mask) # Multiply alpha by binary_mask
 
     # Convert the matplotlib figure to a PIL Image for display in Streamlit
-    fig.canvas.draw()
-    img_viz = Image.frombytes('RGB', fig.canvas.get_width_height(), fig.canvas.tostring_rgb())
-    plt.close(fig) # Close the plot to free up memory
-    return img_viz
+   fig.canvas.draw()
+
+buf = np.asarray(fig.canvas.buffer_rgba())
+img_viz = Image.fromarray(buf[:, :, :3])
+
+plt.close(fig)
+return img_viz
 
 
 # --- Streamlit Application Layout ---
