@@ -97,7 +97,7 @@ def visualize_predictions(image_pil, predictions, id_to_label_map, threshold):
             
             # Draw mask (alpha blended)
             # Select the mask for the predicted class (shape [H, W])
-            mask_for_label = mask_logits[label_id.item()]
+            mask_for_label = mask_logits[0]
             # Apply sigmoid to convert logits to probabilities, then threshold
             mask_probs = mask_for_label.sigmoid().cpu().numpy()
             binary_mask = (mask_probs > 0.5).astype(np.uint8) # Binary mask (0 or 1)
