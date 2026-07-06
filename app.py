@@ -76,7 +76,7 @@ def visualize_predictions(image_pil, predictions, id_to_label_map, threshold):
     ax.set_axis_off() # Hide axes for cleaner display
 
     # Define a color map for different classes
-    colors = plt.cm.get_cmap('hsv', len(id_to_label_map) + 1) 
+    colors = plt.get_cmap('hsv', len(id_to_label_map) + 1) 
 
     for box, label_id, score, mask_logits in zip(predictions['boxes'], predictions['labels'], predictions['scores'], predictions['masks']):
         if score > threshold:
