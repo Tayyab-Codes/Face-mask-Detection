@@ -113,7 +113,6 @@ def visualize_predictions(image_pil, predictions, id_to_label_map, threshold):
 
      # Convert the matplotlib figure to a PIL Image for display in Streamlit
        fig.canvas.draw()
-
     buf = np.asarray(fig.canvas.buffer_rgba())
     img_viz = Image.fromarray(buf[:, :, :3])
 
